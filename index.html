@@ -40,20 +40,83 @@
 		<h1 class="masthead">Time of Day</h1>
 	</header>
     <main>
-	 <header><h3>A JavaScript Project by YOUR NAME HERE</h3></header>
-	    <p>Explain what your page does and how it works here!</p>
-	  <img src="http://dummyimage.com/300x400" alt="Time of Day Image" class="flexible">
+	 <header><h3>A JavaScript Project by Noah Berhanu</h3></header>
+	 <h3 id="my-greeting">Good Morning!</h3>
+	    <p>
+				The html of this page changes color and the image changes based on the time of day using military time.<br><br>If the time is between 5:00-11:59, the html tag with an id of "my-greeting" will display "Good Morning!" on the page. The color will be yellow and image changes.<br><br>If the time is between 12:00-17:59, the html tag with an id of "my-greeting" will display "Good Afternoon!" on the page. The color will be lightblue and image changes.<br><br>If the time is between 18:00-22:59, the html tag with an id of "my-greeting" will display "Good Evening!" on the page. The color will be red and image changes.<br><br>Any other time (23:00-23:59 & 0:00-4:59), the html tag with an id of "my-greeting" will display "Good Night!" on the page. The color will be black and image changes.
+			</p>
+	  <img src="http://dummyimage.com/300x400" alt="Time of Day Image" class="flexible" id="my-pic">
      <footer>
-      <p><small>&copy; 2022 by 
-          YOUR NAME HERE, All Rights Reserved ~ 
+      <p><small>&copy; 2023<span id="year"></span> by 
+          Noah Berhanu, All Rights Reserved ~ 
           <a id="html-checker" href="#" target="_blank">Check HTML</a> ~ 
           <a id="css-checker" href="#" target="_blank">Check CSS</a></small>
      </p>
     </footer>
   </main>
  <script>
+	/*
+	
+		Deliverable: Create a web page that uses JavaScript to determine the current hour, and presents a different image, custom message, and color based on each of the following times of day:
+
+		Morning (5am to 12 noon)
+		Afternoon (12 noon to 6pm)
+		Evening (6pm to 11pm)
+		Night (11pm to 5am)
+
+		Criteria: The three items above (color, image, message) must be unique for each of the 4 time periods of the day.
+
+	*/
+
+		let myDate = new Date();
+		let myHour = myDate.getHours();
+		let myGreeting = "";
+		let myColor = "";
+		let myPic = "";
+
+		// PUT IN PLACE FOR TESTING =  REMOVE LINE BELOW!!
+		//myHour = 5;
+
+		if(myHour >= 5 && myHour < 12){
+				myGreeting = "Good Morning!";
+				myColor = "yellow";
+				myPic = "morning.jpg";
+
+		} else if(myHour >= 12 && myHour < 18){
+				myGreeting = "Good Afternoon!";
+				myColor = "lightblue";
+				myPic = "afternoon.jpg";
+
+		} else if(myHour >= 18 && myHour < 23){
+			myGreeting = "Good Evening!";
+			myColor = "red";
+			myPic = "evening.jpg";
+
+		} else{
+				myGreeting = "Good Night!";
+				myColor = "black";
+				myPic = "night.jpg";
+		}
+
+		// Pre-pend the images path
+		myPic = "images/" + myPic;
+
+		// Custom message
+		document.getElementById("my-greeting").innerHTML = myGreeting;
+
+		// Custom color 
+		document.querySelector("html").style.backgroundColor = myColor;
+
+		// Custom pic
+		document.getElementById("my-pic").src = myPic;
+
+		let yearNow = myDate.getUTCFullYear();
+		if (yearNow > 2023) {
+			document.getElementById("year").innerHTML = "-"+yearNow;
+		}
+
     document.getElementById("html-checker").setAttribute("href","https://validator.w3.org/nu/?doc=" + location.href);
     document.getElementById("css-checker").setAttribute("href","https://jigsaw.w3.org/css-validator/validator?uri=" + location.href);  
- </script>
+  </script>
 </body>
 </html>
